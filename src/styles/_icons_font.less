@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'icons-font';
+    src: url('../assets/fonts/icons-font/font/icons-font.woff2') format('woff2'),
+    url('../assets/fonts/icons-font/font/icons-font.woff') format('woff'),
+    url('../assets/fonts/icons-font/font/icons-font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icon {
+    font-family: "icons-font" !important;
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+
+    display: inline-block;
+    //text-decoration: inherit;
+    text-decoration: none;
+    width: 1em;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon_after {
+    &::after {
+        &:extend(.icon);
+    }
+}
+
+.icon_before {
+    &::before {
+        &:extend(.icon);
+    }
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    font-size: 24px;
+
+    &::before {
+        &:extend(.icon);
+    }
+
+    &.text-bold::before {
+        font-weight: bold;
+    }
+
+    /* Rules to rotate items */
+
+    &.r90::before {
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+        -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
+    &.r180::before {
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+        -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+
+    &.r270::before {
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+        -webkit-transform: rotate(270deg);
+        -ms-transform: rotate(270deg);
+        transform: rotate(270deg);
+    }
+
+    &.flip-b-horizontal::before {
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
+        -webkit-transform: scale(-1, 1);
+        -ms-transform: scale(-1, 1);
+        transform: scale(-1, 1);
+    }
+
+    &.flip-b-vertical::before {
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1);
+        -webkit-transform: scale(1, -1);
+        -ms-transform: scale(1, -1);
+        transform: scale(1, -1);
+    }
+}

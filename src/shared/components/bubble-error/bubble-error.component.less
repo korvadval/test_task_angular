@@ -1,0 +1,32 @@
+.show-tips {
+    position: absolute;
+    z-index: 100;
+
+    font-size: 13px;
+    border-radius: 0 4px 4px 4px;
+
+    background-color: var(--red);
+
+    box-shadow: 0 7px 8px -4px rgba(0, 0, 0, .2), 0 12px 17px 2px rgba(0, 0, 0, .14), 0 5px 22px 4px rgba(0, 0, 0, .12);
+
+    .tips-text {
+        line-height: 1;
+        color: var(--grey-7);
+        text-align: left;
+        margin: 0;
+        padding: 4px 8px;
+        display: flex;
+        align-items: center;
+    }
+
+    .arrow-right {
+        width: 0;
+        height: 0;
+        border-top: 6px solid transparent;
+        position: absolute;
+        top: -6px;
+        left: 0;
+
+        border-left: 6px solid var(--red);
+    }
+}

@@ -30,7 +30,9 @@
                         "styles": [
                             "src/styles.less"
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "./src/assets/js/phone_mask_.js"
+                        ]
                     },
                     "configurations": {
                         "production": {
@@ -42,8 +44,8 @@
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "2kb",
-                                    "maximumError": "4kb"
+                                    "maximumWarning": "3kb",
+                                    "maximumError": "5kb"
                                 }
                             ],
                             "fileReplacements": [
@@ -85,5 +87,8 @@
                 }
             }
         }
+    },
+    "cli": {
+        "analytics": false
     }
 }

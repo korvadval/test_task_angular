@@ -1,0 +1,58 @@
+<div class="page-header">
+    Profile page
+</div>
+
+<div *ngIf="user_profile"
+     class="flex-box flex-column a-start  mar-t-24"
+>
+    <!--email-->
+    <div class="flex-box mar-b-16">
+        <div class="color-grey-2 mar-r-8 text-bold">E-mail:</div>
+        <div class="color-grey-3">{{user_profile.email}}</div>
+    </div>
+    <!--first name-->
+    <app-input [(value)]="user_profile.first_name"
+               [is_disabled]="is_info_sending"
+               [error_message]="errors.first_name"
+               [size]="48"
+               [is_required]="true"
+               (focus_in)="clearErrorOnControl('first_name')"
+               label="Your first name"
+               class="profile-form-input"
+    ></app-input>
+    <!--last name-->
+    <app-input [(value)]="user_profile.last_name"
+               [error_message]="errors.last_name"
+               [is_disabled]="is_info_sending"
+               [size]="48"
+               [is_required]="true"
+               (focus_in)="clearErrorOnControl('last_name')"
+               label="Your last name"
+               class="profile-form-input"
+    ></app-input>
+    <!--phone number-->
+    <app-input [(value)]="user_profile.phone_number"
+               [error_message]="errors.phone_number"
+               [is_disabled]="is_info_sending"
+               [size]="48"
+               [is_required]="true"
+               (focus_in)="clearErrorOnControl('phone_number')"
+               label="Your phone number"
+               class="profile-form-input"
+               [is_phone_mask]="true"
+    ></app-input>
+    <!--website url-->
+    <app-input [(value)]="user_profile.website_url"
+               [is_disabled]="is_info_sending"
+               [size]="48"
+               label="Your website"
+               class="profile-form-input"
+    ></app-input>
+
+    <app-button class="profile-form-input"
+                [is_loading]="is_info_sending"
+                (handle_click)="saveInfo()"
+    >
+        Save info
+    </app-button>
+</div>

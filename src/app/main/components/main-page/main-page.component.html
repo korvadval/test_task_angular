@@ -1,0 +1,16 @@
+<app-header (toggleLeftMenu)="toggleLeftMenu()"></app-header>
+
+<div class="flex-box a-stretch flex-grow">
+    <app-left-menu *ngIf="is_left_menu_opened"
+                   [animate_menu_class]="animate_menu_class"
+                   [animate_overlay_class]="animate_overlay_class"
+                   (toggleMenu)="toggleLeftMenu()"
+    ></app-left-menu>
+
+    <div class="flex-box flex-column flex-grow">
+        <div class="wrapper">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</div>

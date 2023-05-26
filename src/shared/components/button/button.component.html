@@ -1,0 +1,19 @@
+<div class="app-btn"
+     [class]="classes"
+     (click)="handleClick()"
+>
+    <ng-content></ng-content>
+    <div *ngIf="is_loading"
+         class="app-btn-loading"
+    >
+        <app-spinner></app-spinner>
+    </div>
+
+    <div *ngIf="is_disabled"
+         class="app-btn-disabled"
+         (click)="disabled_click.emit()"
+    >
+    </div>
+</div>
+
+

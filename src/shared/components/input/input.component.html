@@ -1,0 +1,60 @@
+<div class="input-container"
+     [class]="classes"
+     #main_container
+>
+
+    <div class="input-label" *ngIf="label">
+        {{label}}
+        <div *ngIf="is_required" class="required-piece">*</div>
+    </div>
+
+    <div class="input-box">
+        <input *ngIf="!is_textarea"
+
+               class="input-control"
+               [(ngModel)]="value"
+               (input)="handleInput($event)"
+
+               [phoneMask]="is_phone_mask"
+
+               (focusin)="onFocusIn()"
+               (focusout)="onFocusOut()"
+
+               [placeholder]="placeholder"
+               [type]="input_type"
+               [tabIndex]="is_not_editable?'-1':''"
+               #input_control
+        />
+
+        <textarea *ngIf="is_textarea"
+
+                  class="input-control"
+                  [(ngModel)]="value"
+
+                  (focusin)="onFocusIn()"
+                  (focusout)="onFocusOut()"
+
+                  [placeholder]="placeholder"
+                  [tabIndex]="is_not_editable?'-1':''"
+        ></textarea>
+
+        <div *ngIf="is_not_editable"
+             class="input-not-editable-block"
+             (click)="notEditableClick()"
+        ></div>
+
+        <app-bubble-error *ngIf="error_message.length"
+                          [textError]="error_message"
+                          [offset]="error_offset"
+        ></app-bubble-error>
+    </div>
+
+    <div *ngIf="right_button && !is_disabled"
+         (click)="clickRightButton($event)"
+         class="input-right-button"
+    >
+        <div [class]="'icon-'+right_button"></div>
+    </div>
+
+</div>
+

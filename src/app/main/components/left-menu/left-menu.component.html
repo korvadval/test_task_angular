@@ -1,0 +1,15 @@
+<div class="left-menu-overlay"
+     [class]="animate_overlay_class"
+     (click)="toggleMenu.emit()"
+></div>
+
+<div class="left-menu-container" [class]="animate_menu_class">
+    <div *ngFor="let node of nav_nodes"
+         class="left-menu-item"
+         [routerLink]="node.link"
+         routerLinkActive="left-menu-active-link"
+         (click)="toggleMenu.emit()"
+    >
+        {{node.name}}
+    </div>
+</div>

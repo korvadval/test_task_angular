@@ -1,0 +1,54 @@
+/*
+https://animate.style/
+
+<div class="animate__animated animate__faster animate__bounce">Example</div>
+*/
+
+:root {
+    --animate-duration: 0.5s;
+    --animate-delay: 1s;
+    --animate-repeat: 1;
+}
+
+.animate__ {
+    &animated {
+        animation-duration: var(--animate-duration);
+        animation-fill-mode: both;
+    }
+
+    &faster {
+        animation-duration: calc(var(--animate-duration) / 2);
+    }
+
+    &fast {
+        animation-duration: calc(var(--animate-duration) * 0.8);
+    }
+
+    &slow {
+        animation-duration: calc(var(--animate-duration) * 2);
+    }
+
+    &slow1 {
+        animation-duration: calc(var(--animate-duration) * 1.2);
+    }
+
+    &slower {
+        animation-duration: calc(var(--animate-duration) * 3);
+    }
+}
+
+@import "./_zoomIn";
+@import "./_zoomInDown";
+@import "./_zoomOut";
+@import "./_fadeIn";
+@import "./_fadeOut";
+@import "./_fadeOutDown";
+@import "./_fadeInLeft";
+@import "./_fadeInRight";
+@import "./_fadeOutLeft";
+@import "./_fadeOutRight";
+@import "./_fadeInDown";
+@import "./_fadeInUp";
+@import "./_bounce";
+@import "./_headShake";
+@import "./_shakeX";

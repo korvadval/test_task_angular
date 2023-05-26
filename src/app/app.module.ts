@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { CoreModule } from 'core/core.module';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {CoreModule} from 'core/core.module';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {AuthGuard} from "../core/guards/auth.guard";
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import { AppComponent } from './app.component';
         AppRoutingModule,
         CoreModule
     ],
-    providers: [],
+    providers: [AuthGuard],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

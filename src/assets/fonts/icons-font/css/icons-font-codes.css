@@ -1,0 +1,41 @@
+
+.icon-clear:before {
+    content: '\e810';
+}
+
+/* '' */
+.icon-expand_more:before {
+    content: '\e81c';
+}
+
+/* '' */
+.icon-search:before {
+    content: '\e841';
+}
+
+/* '' */
+.icon-menu:before {
+    content: '\e861';
+}
+
+/* '' */
+.icon-account_circle:before {
+    content: '\e87b';
+}
+
+/* '' */
+.icon-logout:before {
+    content: '\e88f';
+}
+
+/* '' */
+.icon-visibility_off:before {
+    content: '\e8ea';
+}
+
+/* '' */
+.icon-visibility:before {
+    content: '\e8eb';
+}
+
+/* '' */

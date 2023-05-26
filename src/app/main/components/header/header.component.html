@@ -1,0 +1,20 @@
+<div class="header-container">
+    <div class="flex-box">
+        <div class="icon-menu mar-r-24 cur-p" (click)="toggleLeftMenu.emit()"></div>
+        <div class="flex-box cur-p mar-r-24 header-button-container" routerLink="profile">
+            <div class="icon-account_circle mar-r-4"></div>
+            <div>My profile</div>
+        </div>
+        <div class="flex-box color-grey-3" *ngIf="user_profile">
+            <div class="mar-r-10">{{user_profile.first_name}}</div>
+            <div>{{user_profile.last_name}}</div>
+        </div>
+    </div>
+    <div class="flex-box header-button-container">
+        <div class="color-accent mar-r-32">{{success_message}}</div>
+        <div class="flex-box cur-p" (click)="logout()">
+            <div class="mar-r-4">logout</div>
+            <div class="icon-logout fs-20"></div>
+        </div>
+    </div>
+</div>

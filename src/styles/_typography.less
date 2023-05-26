@@ -1,0 +1,172 @@
+.all-available {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+html, body {
+    margin: 0;
+    height: 100vh;
+}
+
+body, app-root {
+    &:extend(.all-available);
+}
+
+.wrapper {
+    width: 960px;
+
+    margin: 24px auto 0 auto;
+
+    &:extend(.all-available);
+}
+
+@mar_pad_variables: 0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 13, 15, 16, 18, 19, 20, 24, 25, 30, 32, 35, 36, 40, 45, 48, 50, 52, 56, 60, 64, 65, 72, 100;
+each(@mar_pad_variables, {
+    .mar-@{value} {
+        margin: ~"@{value}px";
+    }
+    .mar-l-@{value} {
+        margin-left: ~"@{value}px" !important;
+    }
+
+    .mar-r-@{value} {
+        margin-right: ~"@{value}px" !important;
+    }
+
+    .mar-lr-@{value} {
+        &:extend(.mar-l-@{value});
+        &:extend(.mar-r-@{value});
+    }
+
+    .mar-t-@{value} {
+        margin-top: ~"@{value}px" !important;
+    }
+
+    .mar-b-@{value} {
+        margin-bottom: ~"@{value}px" !important;
+    }
+
+    .mar-tb-@{value} {
+        &:extend(.mar-t-@{value});
+        &:extend(.mar-b-@{value});
+    }
+
+    .pad-@{value} {
+        padding: ~"@{value}px";
+    }
+    .pad-l-@{value} {
+        padding-left: ~"@{value}px" !important;
+    }
+    .pad-r-@{value} {
+        padding-right: ~"@{value}px" !important;
+    }
+    .pad-lr-@{value} {
+        &:extend(.pad-l-@{value});
+        &:extend(.pad-r-@{value});
+    }
+    .pad-t-@{value} {
+        padding-top: ~"@{value}px" !important;
+    }
+    .pad-b-@{value} {
+        padding-bottom: ~"@{value}px" !important;
+    }
+    .pad-tb-@{value} {
+        &:extend(.pad-t-@{value});
+        &:extend(.pad-b-@{value});
+    }
+});
+
+.pos-a {
+    position: absolute;
+}
+
+.pos-r {
+    position: relative;
+}
+
+.pos-f {
+    position: fixed;
+}
+
+.pos-sticky {
+    position: sticky
+}
+
+.flex-box {
+    position: relative;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+
+    &.start {
+        justify-content: flex-start; //elements are moved to the beginning of the line (default)
+    }
+
+    &.end {
+        justify-content: flex-end; //elements are moved to the end of the line
+    }
+
+    &.center {
+        justify-content: center; //all content is centered along the main axis
+    }
+
+    &.between {
+        justify-content: space-between; //all child elements are pressed to the edges and have the same padding between them
+    }
+
+    &.around {
+        justify-content: space-around; //all child elements are evenly spaced with equal spacing between themselves and the borders of block
+    }
+
+    &.a-center {
+        align-items: center !important; //all child elements are centered
+    }
+
+    &.a-end {
+        align-items: flex-end !important; //all child elements are pressed to the bottom
+    }
+
+    &.a-start {
+        align-items: flex-start !important; //all child elements are pressed to the top
+    }
+
+    &.a-stretch {
+        align-items: stretch !important; //all child elements have equal height
+    }
+}
+
+.flex-grow {
+    flex-grow: 1; //element fills all available space
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-column-reverse {
+    flex-direction: column-reverse;
+}
+
+.flex-row-reverse {
+    flex-direction: row-reverse;
+}
+
+.cur-p {
+    cursor: pointer;
+}
+
+.cur-d {
+    cursor: default;
+}
+
+@fs_variables: 8, 10, 12, 14, 16, 18, 20, 24, 28, 32;
+each(@fs_variables, {
+    .fs-@{value} {
+        font-size: ~"@{value}px" !important;
+    }
+});
+
+.text-bold {
+    font-weight: bold;
+}

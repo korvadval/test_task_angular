@@ -1,0 +1,282 @@
+.input-container {
+
+    * {
+        line-height: normal !important;
+    }
+
+    @s-lr-mar: 12px;
+    @s-icon: 24px;
+    @border-size: 1px;
+    @s-btn-width: 48px;
+
+    width: 100%;
+    max-width: 300px;
+
+    font-size: 16px;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+
+    border-radius: 4px;
+    border: 1px solid var(--grey-4);
+
+    background: #fff;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+
+    .input-label {
+        position: absolute;
+        left: @s-lr-mar;
+        right: 10px;
+
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+
+        color: var(--grey-3);
+        transition: all .2s ease-in-out 0s;
+        transform: scale(1) translate3d(0, 0, 0);
+        transform-origin: left top 0;
+        z-index: 0;
+        font-size: 16px;
+
+        .required-piece {
+            color: var(--red);
+            margin-left: 5px;
+            display: inline-block;
+        }
+    }
+
+    .input-box {
+        -webkit-touch-callout: none;
+        user-select: none;
+        cursor: text;
+        background: transparent;
+        margin-left: @s-lr-mar;
+        margin-right: @s-lr-mar;
+        align-items: center;
+        display: flex;
+        flex-grow: 1;
+    }
+
+    .input-control {
+        font: inherit;
+        line-height: inherit;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        border: none;
+        outline: 0;
+        background: transparent;
+        -webkit-appearance: none;
+        height: 100%;
+        padding: 0;
+        color: var(--grey-2);
+        box-shadow: none;
+    }
+
+    .input-not-editable-block {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 5;
+        cursor: pointer;
+    }
+
+    .input-right-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--grey-3);
+        cursor: pointer;
+
+        &:hover {
+            color: var(--grey-2);
+        }
+    }
+
+    &.textarea {
+        .input-box {
+            padding-top: 28px;
+            margin-right: 0 !important;
+        }
+
+        textarea {
+            padding-top: 0;
+            padding-right: 48px;
+            height: 112px;
+            min-height: 112px;
+            resize: vertical;
+            line-height: 1.5em;
+            padding-bottom: 12px;
+        }
+
+        .input-label {
+            top: 20px;
+        }
+
+        &.focused .input-label,
+        &.has-value .input-label {
+            transform: perspective(1px) translate3d(0, -10px, 0);
+        }
+
+        &.has-right-button {
+            .input-label {
+                right: @s-btn-width;
+            }
+        }
+
+        .input-right-button {
+            position: absolute;
+            top: 28px;
+            right: 0;
+            z-index: 99;
+
+            width: @s-btn-width;
+            min-width: @s-btn-width;
+            max-width: @s-btn-width;
+        }
+    }
+
+    &.focused .input-label,
+    &.has-value .input-label {
+        font-size: 12px;
+        user-select: none;
+        color: var(--grey-3);
+    }
+
+    &.focused {
+        .input-label {
+            color: var(--accent) !important;
+        }
+    }
+
+    &.size_59 {
+        @s-h: 59px;
+        height: @s-h;
+
+        .input-label {
+            top: 20px;
+        }
+
+        .input-control {
+            padding-top: 28px;
+            padding-bottom: 12px;
+        }
+
+        &.focused .input-label,
+        &.has-value .input-label {
+            transform: perspective(1px) translate3d(0, -10px, 0);
+        }
+
+        &.has-right-button {
+            .input-label {
+                right: @s-btn-width;
+            }
+        }
+
+        .input-right-button {
+            width: @s-btn-width;
+            min-width: @s-btn-width;
+            max-width: @s-btn-width;
+        }
+    }
+
+    &.size_48 {
+        @s-h: 48px;
+        height: @s-h;
+
+        .input-control {
+            padding-top: 21.5px;
+            padding-bottom: 7.5px;
+        }
+
+        .input-label {
+            top: 14.5px;
+        }
+
+        &.focused .input-label,
+        &.has-value .input-label {
+            transform: perspective(1px) translate3d(0, -7.5px, 0);
+        }
+
+        &.has-right-button {
+            .input-label {
+                right: 30px;
+            }
+        }
+
+        .input-right-button {
+            width: 18px;
+            min-width: 18px;
+            max-width: 18px;
+            margin-right: 12px;
+        }
+    }
+
+    &.size_36 {
+        @s-h: 36px;
+        height: @s-h;
+
+        .input-control {
+            padding-top: 21.5px;
+            padding-bottom: 7.5px;
+        }
+
+        .input-label {
+            top: 7.5px;
+        }
+
+        &.focused .input-label,
+        &.has-value .input-label {
+            transform: perspective(1px) translate3d(0, -7.5px, 0);
+        }
+
+        &.has-right-button {
+            .input-label {
+                right: @s-h;
+            }
+        }
+
+        .input-right-button {
+            width: @s-h;
+            min-width: @s-h;
+            max-width: @s-h;
+        }
+    }
+
+    &.type_border-bottom {
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid var(--grey-4);
+        background-color: transparent;
+    }
+
+    &.not-has-label {
+        .input-control {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+    }
+
+    &.disabled {
+        background: var(--grey-5);
+        pointer-events: none;
+    }
+
+    &.has-error {
+        .input-label {
+            color: var(--red)
+        }
+    }
+
+    &.has-right-button {
+        .input-box {
+            margin-right: 0 !important;
+        }
+    }
+}

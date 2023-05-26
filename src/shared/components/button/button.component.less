@@ -1,0 +1,112 @@
+.app-btn {
+    position: relative;
+
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    cursor: pointer;
+
+    padding: 0 16px;
+
+    color: #fff;
+
+    font-weight: 500;
+
+    border: none !important;
+    border-radius: 4px;
+
+    transition: background .3s ease, color .3s ease, border .3s ease;
+
+    overflow: hidden;
+    user-select: none;
+
+    max-width: 300px;
+
+    &.size_36 {
+        height: 36px;
+    }
+
+    &.size_48 {
+        height: 48px;
+    }
+
+    &.size_59 {
+        height: 59px;
+    }
+
+    &.primary {
+        background-color: var(--primary);
+    }
+
+    &.accent {
+        background-color: var(--accent);
+    }
+
+    &.stroked {
+        background-color: white;
+        border: 1px solid var(--grey-4) !important;
+        color: var(--grey-2);
+    }
+
+    &:hover:not(.disabled):not(.loading) {
+        &.primary {
+            background: var(--primary-hovered);
+        }
+
+        &.accent {
+            background: var(--accent-hovered);
+        }
+
+        &.stroked {
+            background-color: var(--grey-5);
+        }
+    }
+
+    &.disabled {
+        cursor: default;
+        background-color: var(--grey-5);
+        color: var(--grey-4);
+    }
+
+    &.not_border {
+        border: none !important;
+    }
+}
+
+.app-btn-loading,
+.app-btn-disabled {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: default;
+}
+
+@keyframes btn-loading {
+    0% {
+        background-color: transparent;
+    }
+    60% {
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+    80% {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+    100% {
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+}
+
+.app-btn-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.6);
+
+    animation: .3s linear btn-loading;
+}
+
