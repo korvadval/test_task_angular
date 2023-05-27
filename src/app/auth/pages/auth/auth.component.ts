@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {AuthService} from "../../../../core/services";
 import {ActivatedRoute, Router} from "@angular/router";
 import {take} from "rxjs";
+import {IForm} from "../../../../shared/interfaces/shared_interfaces";
 
 @Component({
     selector: 'app-auth',
@@ -16,9 +17,9 @@ export class AuthComponent implements OnInit {
         }
     }
 
-    controls = {
+    controls: IForm = {
         username: {value: '', error: ''},
-        password: {value: '', error: ''},
+        password: {value: '', error: ''}
     }
 
     is_sending: boolean = false
@@ -30,7 +31,7 @@ export class AuthComponent implements OnInit {
     ) {
     }
 
-    setErrorOnControl(control: 'username' | 'password', error: string): void {
+    setErrorOnControl(control: string, error: string): void {
         this.controls[control].error = ''
 
         setTimeout(() => {
@@ -38,16 +39,16 @@ export class AuthComponent implements OnInit {
         }, 50)
     }
 
-    clearErrorOnControl(control: 'username' | 'password') {
+    clearErrorOnControl(control: string) {
         this.controls[control].error = ''
     }
 
     login(): void {
         this.is_sending = true
-        this.clearErrorOnControl('username')
-        this.clearErrorOnControl('password')
 
-        this._auth.login(this.controls.username.value, this.controls.password.value)
+        Object.keys(this.controls).forEach(key => this.clearErrorOnControl(key))
+
+        this._auth.login(this.controls['username'].value, this.controls['password'].value)
             .subscribe(data => {
                 this.is_sending = false
 
@@ -63,12 +64,7 @@ export class AuthComponent implements OnInit {
                 }
 
                 if (data.errors) {
-                    if (data.errors['username']) {
-                        this.setErrorOnControl('username', data.errors['username'])
-                    }
-                    if (data.errors['password']) {
-                        this.setErrorOnControl('password', data.errors['password'])
-                    }
+                    Object.keys(data.errors).forEach(key => this.setErrorOnControl(key, data.errors![key]))
                 }
             })
     }

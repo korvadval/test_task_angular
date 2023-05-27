@@ -1,8 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
-import {ProfileService} from "../../../../shared";
 
-@UntilDestroy()
 @Component({
     selector: 'app-main-page',
     templateUrl: './main-page.component.html',
@@ -14,13 +11,7 @@ export class MainPageComponent implements OnInit {
     animate_menu_class = 'animate__animated animate__fadeInLeft'
     animate_overlay_class = 'animate__animated animate__fadeIn'
 
-    constructor(
-        private _profile: ProfileService
-    ) {
-        this._profile.user_profile$.pipe(untilDestroyed(this))
-            .subscribe(user_profile => {
-                console.log(user_profile)
-            })
+    constructor() {
     }
 
     toggleLeftMenu() {

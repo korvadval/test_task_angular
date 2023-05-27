@@ -26,11 +26,11 @@ export class PhoneMaskDirective {
     }
 
     @HostListener("input", ["$event"])
-    onInput(e: any) {
+    onInput(e: InputEvent) {
         if (!this.is_need_mask) {
             return;
         }
-        const input = e.target,
+        const input = e.target as HTMLInputElement,
             selectionStart = input.selectionStart
         let inputNumbersValue = this.getNumbersValue(input.value),
             formattedInputValue = ""
@@ -45,12 +45,12 @@ export class PhoneMaskDirective {
             if (e.data && /\D/g.test(e.data)) {
                 // Attempt to input non-numeric symbol
                 input.value = inputNumbersValue
-                e.target.dispatchEvent(new Event('input'))
+                e.target?.dispatchEvent(new Event('input'))
                 return
             }
-            if (input.value.length > 18) {
+            if (input.value.length > 18 && selectionStart) {
                 input.value = input.value.substring(0, selectionStart - 1) + input.value.substring(selectionStart, input.value.length)
-                e.target.dispatchEvent(new Event('input'))
+                e.target?.dispatchEvent(new Event('input'))
                 return
             }
             return

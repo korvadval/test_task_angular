@@ -30,9 +30,7 @@
                         "styles": [
                             "src/styles.less"
                         ],
-                        "scripts": [
-                            "./src/assets/js/phone_mask_.js"
-                        ]
+                        "scripts": []
                     },
                     "configurations": {
                         "production": {

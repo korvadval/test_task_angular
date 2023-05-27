@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {IBubbleErrorOffset} from "../bubble-error/bubble-error.component";
 
 export type IRightButtonName =
@@ -17,14 +17,14 @@ export type InputFieldType = 'default' | 'border-bottom'
     styleUrls: ['./input.component.less']
 })
 export class InputComponent implements OnInit, OnChanges {
-    @ViewChild('input_control') input_control_ref: any
-    @ViewChild('main_container') main_container: any
+    @ViewChild('input_control') input_control_ref!: ElementRef
+    @ViewChild('main_container') main_container!: ElementRef
 
     @Input() size: 36 | 48 | 59 = 48
     @Input() field_type: InputFieldType = "default"
 
-    @Input() value: any
-    @Output() valueChange: EventEmitter<any> = new EventEmitter()
+    @Input() value!: string
+    @Output() valueChange: EventEmitter<string> = new EventEmitter()
 
     @Input() label: string = ''
     @Input() placeholder: string = ''
@@ -68,7 +68,7 @@ export class InputComponent implements OnInit, OnChanges {
 
     handleInput(event: Event | string) {
         let value: string
-        if (typeof event !== 'string') {
+        if (event instanceof Event) {
             value = (event.target as HTMLInputElement).value
         } else {
             value = event

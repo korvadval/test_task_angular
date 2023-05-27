@@ -2,6 +2,7 @@ import {Component, HostListener} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {IUserProfile, ProfileService} from "../../../../../../shared";
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
+import {IForm} from "../../../../../../shared/interfaces/shared_interfaces";
 
 @UntilDestroy()
 @Component({
@@ -17,12 +18,14 @@ export class ProfilePageComponent {
         }
     }
 
-    user_profile: IUserProfile | null = null
-    errors = {
-        first_name: '',
-        last_name: '',
-        phone_number: '',
+    user_profile: IForm = {
+        email: {value: '', error: ''},
+        first_name: {value: '', error: ''},
+        last_name: {value: '', error: ''},
+        phone_number: {value: '', error: ''},
+        website_url: {value: '', error: ''},
     }
+
     success_message_timeout: NodeJS.Timeout | undefined = undefined
 
     is_info_sending: boolean = false
@@ -35,40 +38,39 @@ export class ProfilePageComponent {
 
         this._profile.user_profile$.pipe(untilDestroyed(this))
             .subscribe(user_profile => {
-                this.user_profile = JSON.parse(JSON.stringify(user_profile))
+                Object.keys(user_profile).forEach(key => {
+                    this.user_profile[key].value = user_profile[key as keyof IUserProfile]
+                })
             })
     }
 
-    setErrorOnControl(control: 'first_name' | 'last_name' | 'phone_number', error: string): void {
-        this.errors[control] = ''
+    setErrorOnControl(control: string, error: string): void {
+        this.user_profile[control].error = ''
 
         setTimeout(() => {
-            this.errors[control] = error
+            this.user_profile[control].error = error
         }, 50)
     }
 
-    clearErrorOnControl(control: 'first_name' | 'last_name' | 'phone_number') {
-        this.errors[control] = ''
+    clearErrorOnControl(control: string) {
+        this.user_profile[control].error = ''
     }
 
     saveInfo() {
         this.is_info_sending = true
-        this.clearErrorOnControl('first_name')
-        this.clearErrorOnControl('last_name')
-        this.clearErrorOnControl('phone_number')
 
-        this._profile.setUserProfile(this.user_profile as IUserProfile).subscribe(data => {
+        const profile_to_send: Partial<IUserProfile> = {}
+
+        Object.keys(this.user_profile).forEach(key => {
+            this.clearErrorOnControl(key)
+            profile_to_send[key as keyof IUserProfile] = this.user_profile[key].value
+        })
+
+
+        this._profile.setUserProfile(profile_to_send as IUserProfile).subscribe(data => {
             this.is_info_sending = false
             if (data.errors) {
-                if (data.errors['first_name']) {
-                    this.setErrorOnControl('first_name', data.errors['first_name'])
-                }
-                if (data.errors['last_name']) {
-                    this.setErrorOnControl('last_name', data.errors['last_name'])
-                }
-                if (data.errors['phone_number']) {
-                    this.setErrorOnControl('phone_number', data.errors['phone_number'])
-                }
+                Object.keys(data.errors).forEach(key => this.setErrorOnControl(key, data.errors![key]))
             }
 
             if (data.response) {

@@ -1,7 +1,7 @@
 <div class="wrapper flex-box a-center center">
     <div class="auth-container">
-        <app-input [(value)]="controls.username.value"
-                   [error_message]="controls.username.error"
+        <app-input [(value)]="controls['username'].value"
+                   [error_message]="controls['username'].error"
                    (focus_in)="clearErrorOnControl('username')"
                    label="User name"
                    [size]="48"
@@ -9,8 +9,8 @@
                    class="mar-b-16"
         >
         </app-input>
-        <app-input [(value)]="controls.password.value"
-                   [error_message]="controls.password.error"
+        <app-input [(value)]="controls['password'].value"
+                   [error_message]="controls['password'].error"
                    (focus_in)="clearErrorOnControl('password')"
                    label="Password"
                    [size]="48"

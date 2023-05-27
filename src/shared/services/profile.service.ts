@@ -3,11 +3,11 @@ import {BehaviorSubject, delay, Observable, of, take, tap} from 'rxjs';
 import {IResponse} from "../interfaces/http-interfaces";
 
 export interface IUserProfile {
-    readonly email: string,
+    email: string,
     first_name: string,
     last_name: string,
     phone_number: string,
-    website_url?: string,
+    website_url: string,
 }
 
 @Injectable()
@@ -30,7 +30,7 @@ export class ProfileService {
 
     public setUserProfile(value: IUserProfile): Observable<IResponse<boolean>> {
 
-        const errors: { first_name?: string, last_name?: string, phone_number?: string, } = {}
+        const errors: { first_name?: string, last_name?: string, phone_number?: string } = {}
 
         const first_name_error = this._checkLengthErrors(value.first_name)
         if (first_name_error.length) {
@@ -82,7 +82,7 @@ export class ProfileService {
         if (!value.length) {
             return 'Required field.'
         } else if (value.length < 10) {
-            return 'This field cannot be shorter than 10 characters.'
+            return 'This field must be 10 characters.'
         }
         return ''
     }
